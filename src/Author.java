@@ -1,4 +1,6 @@
-class Author {                       // Класс автора
+import java.util.Objects;
+
+class Author {
     private String firstName;
     private String lastName;
 
@@ -13,5 +15,25 @@ class Author {                       // Класс автора
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String toString() {
+        return firstName + " " + lastName;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Author author = (Author) obj;
+        return Objects.equals(firstName, author.firstName) &&
+                Objects.equals(lastName, author.lastName);
+    }
+
+    public int hashCode() {
+        return Objects.hash(firstName, lastName);
     }
 }
